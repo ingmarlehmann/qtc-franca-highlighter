@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE language SYSTEM "language.dtd">
+<language name="Franca interface file" version="1.00" kateversion="2.4" section="Sources" extensions="*.fidl">
+	<highlighting>
+		<list name="metadata_keywords"> 
+			<item>package</item>
+			<item>version</item>
+			<item>major</item>
+			<item>minor</item>
+		</list>
+		<list name="import_keywords">
+			<item>import</item>
+			<item>model</item>
+			<item>from</item>
+		</list>	
+		<list name="primitive_types">
+			<item>UInt8</item>
+			<item>Int8</item>
+			<item>UInt16</item>
+			<item>Int16</item>
+			<item>UInt32</item>
+			<item>Int32</item>
+			<item>UInt64</item>
+			<item>Int64</item>
+			<item>Integer</item>
+			<item>Boolean</item>
+			<item>Float</item>
+			<item>Double</item>
+			<item>String</item>
+			<item>ByteBuffer</item>
+		</list> 
+		<list name="complex_types">>
+			<item>array</item>
+			<item>enumeration</item>
+			<item>struct</item>
+			<item>method</item>
+			<item>union</item>
+			<item>map</item>
+			<item>typeCollection</item>
+			<item>interface</item>
+			<item>attribute</item>
+			<item>broadcast</item>
+			<item>contract</item>
+			<item>PSM</item>
+			<item>call</item>
+			<item>signal</item>
+			<item>initial</item>
+		</list>
+		<list name="decorators">
+			<item>const</item>
+			<item>selective</item>
+			<item>in</item>
+			<item>out</item>
+			<item>const</item>
+		</list>
+		<list name="comment_metadata">
+			<item>@description</item>
+			<item>@author</item>
+			<item>@deprecated</item>
+			<item>@source-uri</item>
+			<item>@source-alias</item>
+			<item>@see</item>
+			<item>@experimental</item>
+			<item>@details</item>
+			<item>@param</item>
+			<item>@high-volume</item>
+			<item>@high-frequency</item>
+		</list>
+		<contexts> 
+			<context attribute="Normal Text" lineEndContext="#pop" name="Normal Text" > 
+				<keyword attribute="MetadataKeyword" context="#stay" String="metadata_keywords" /> 
+				<keyword attribute="ImportKeyword" context="#stay" String="import_keywords" /> 
+				<keyword attribute="PrimitiveType" context="#stay" String="primitive_types" /> 
+				<keyword attribute="ComplexType" context="#stay" String="complex_types" /> 
+				<keyword attribute="Decorator" context="#stay" String="decorators" /> 
+				<DetectChar attribute="String" context="string" char="&quot;" /> 
+				<StringDetect attribute="Comment" context="Comment" String="&lt;**" beginRegion="comment" />
+			</context> 
+
+			<context attribute="String" lineEndContext="#stay" name="string" > 
+				<DetectChar attribute="String" context="#pop" char="&quot;" /> 
+			</context> 
+
+			<context name="Comment" attribute="Comment" lineEndContext="#stay">
+				<DetectSpaces/>
+				<DetectIdentifier/>
+				<keyword attribute="CommentMetadata" context="#stay" String="comment_metadata" /> 
+				<StringDetect attribute="Comment" context="#pop" String="**&gt;" endRegion="comment" />
+		    </context>
+
+		</contexts> 
+		<itemDatas> 
+			<itemData name="Normal Text" defStyleNum="dsNormal" /> 
+			<itemData name="MetadataKeyword" defStyleNum="dsKeyword" /> 
+			<itemData name="ImportKeyword" defStyleNum="dsKeyword" /> 
+			<itemData name="PrimitiveType" defStyleNum="dsDataType" /> 
+			<itemData name="ComplexType" defStyleNum="dsDataType" /> 
+			<itemData name="Decorator" defStyleNum="dsDataType" /> 
+			<itemData name="CommentMetadata" defStyleNum="dsOther" /> 
+			<itemData name="String" defStyleNum="dsString" /> 
+			<itemData name="Comment" defStyleNum="dsComment" />
+		</itemDatas> 
+	</highlighting>
+
+	<general> 
+		<comments> 
+		      <comment name="multiLine" start="&lt;**" end="**&gt;" region="templatecomment" />
+		</comments> 
+		<keywords casesensitive="1"/> 
+	</general> 
+</language> 
