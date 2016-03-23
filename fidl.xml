@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE language SYSTEM "language.dtd">
 <!-- Copyright 2016 Ingmar Lehmann <ingmar.lehmann@volvocars.com> -->
+<!-- Thanks to berno777 for adding missing keywords and comment comment styles! -->
 <!-- This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
 	 If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 <language name="Franca interface file" version="1.00" kateversion="2.4" section="Sources" extensions="*.fidl">
@@ -48,12 +49,14 @@
 			<item>call</item>
 			<item>signal</item>
 			<item>initial</item>
+			<item>typedef</item>
 		</list>
 		<list name="decorators">
 			<item>const</item>
 			<item>selective</item>
 			<item>in</item>
 			<item>out</item>
+			<item>error</item>
 			<item>const</item>
 		</list>
 		<list name="comment_metadata">
@@ -68,6 +71,12 @@
 			<item>@param</item>
 			<item>@high-volume</item>
 			<item>@high-frequency</item>
+			<item>@file</item>
+			<item>@copyright</item>
+			<item>@brief</item>
+			<item>@return</item>
+			<item>@note</item>
+			<item>@error</item>
 		</list>
 		<contexts> 
 			<context attribute="Normal Text" lineEndContext="#pop" name="Normal Text" > 
@@ -78,6 +87,7 @@
 				<keyword attribute="Decorator" context="#stay" String="decorators" /> 
 				<DetectChar attribute="String" context="string" char="&quot;" /> 
 				<StringDetect attribute="Comment" context="Comment" String="&lt;**" beginRegion="comment" />
+				<StringDetect attribute="Comment" context="Comment" String="/*" beginRegion="comment" />
 			</context> 
 
 			<context attribute="String" lineEndContext="#stay" name="string" > 
@@ -89,7 +99,8 @@
 				<DetectIdentifier/>
 				<keyword attribute="CommentMetadata" context="#stay" String="comment_metadata" /> 
 				<StringDetect attribute="Comment" context="#pop" String="**&gt;" endRegion="comment" />
-		    </context>
+				<StringDetect attribute="Comment" context="#pop" String="*/" endRegion="comment" />
+		    	</context>
 
 		</contexts> 
 		<itemDatas> 
@@ -99,7 +110,7 @@
 			<itemData name="PrimitiveType" defStyleNum="dsDataType" /> 
 			<itemData name="ComplexType" defStyleNum="dsDataType" /> 
 			<itemData name="Decorator" defStyleNum="dsDataType" /> 
-			<itemData name="CommentMetadata" defStyleNum="dsOther" /> 
+			<itemData name="CommentMetadata" defStyleNum="dsKeyword" color="#1984aa"/> 
 			<itemData name="String" defStyleNum="dsString" /> 
 			<itemData name="Comment" defStyleNum="dsComment" />
 		</itemDatas> 
