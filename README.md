@@ -2,4 +2,4 @@
 
 ![Franca Highlighter](/franca_highlighter_screenshot.png?raw=true "Franca highlighter in Qt Creator")
 
-To install, copy franca.xml to ~/.config/QtProject/qtcreator/generic-highlighter and restart Qt Creator
+To install, copy fidl.xml to ~/.config/QtProject/qtcreator/generic-highlighter and restart Qt Creator
